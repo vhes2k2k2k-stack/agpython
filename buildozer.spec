@@ -1,12 +1,18 @@
 [app]
-# ... other settings ...
+# Required: Application title
+title = Agencia de Viajes
 
-# Set Python version to 3.11 (matching your workflow)
+# Required: Source directory containing your main.py
+source.dir = .
+
+# Required: Package name (reverse domain notation)
+package.name = agenciadeviajes
+
+# Required: Application version
+version = 0.1
+
+# ... rest of your existing settings ...
 python_version = 3.11
-
-# Ensure requirements are compatible with the target architecture
 requirements = python3,kivy
-
-# Set minimum API level appropriately
 android.minapi = 24
 android.targetapi = 35

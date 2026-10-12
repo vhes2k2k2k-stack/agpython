@@ -1,35 +1,18 @@
-name: Compilar APK Android
-
-on:
-  workflow_dispatch:
-  push:
-    branches: [main, master]
-
-jobs:
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Descargar codigo
-        uses: actions/checkout@v4
-
-      - name: Preparar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Instalar dependencias
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install buildozer cython==0.29.36
-
-      - name: Compilar APK
-        run: buildozer android debug
-
-      - name: Guardar APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Agencia-de-Viajes-APK
-          path: bin/*.apk
-          if-no-files-found: error
+- name: Instalar dependencias
+  run: |
+    sudo apt-get update
+    sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+    python -m pip install --upgrade pip setuptools wheel
+    python -m pip install buildozer cython==0.29.36
+    
+    # Install Android SDK build-tools
+    mkdir -p $HOME/.android
+    echo "sdk.dir=$HOME/Android/Sdk" > $HOME/.android/local.properties
+    
+    # Install cmdline-tools and build-tools via sdkmanager
+    wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O /tmp/cmdline-tools.zip
+    unzip -q /tmp/cmdline-tools.zip -d /tmp/
+    mkdir -p $HOME/Android/Sdk
+    mv /tmp/cmdline-tools $HOME/Android/Sdk/cmdline-tools
+    
+    $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager --sdk_root=$HOME/Android/Sdk "build-tools;35.0.0" "platforms;android-35" --no_https

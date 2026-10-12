@@ -1,0 +1,3 @@
+# Use versions with broader platform support
+charset-normalizer==3.4.0
+# Add your other dependencies here

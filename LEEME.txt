@@ -1,0 +1,30 @@
+# Agencia de Viajes — aplicación Android en Python
+
+Esta app está hecha con Python y Kivy. Permite:
+- Registrar viajes con título, fecha y hora de salida y regreso.
+- Registrar transportes (camión, automóvil, van, avión u otro) y capacidad.
+- Elegir el transporte para cada viaje.
+- Marcar con casillas los lugares ocupados; las casillas vacías son lugares disponibles.
+- Guardar datos localmente en `viajes_data.json`.
+
+## Cómo obtener el APK desde un celular usando GitHub
+
+No puedo compilar un APK Android directamente dentro de este archivo ZIP. El proyecto incluye un flujo de GitHub Actions para compilarlo en los servidores de GitHub.
+
+1. Descomprime este ZIP.
+2. Sube **todos los archivos y carpetas descomprimidos** a un repositorio de GitHub (no subas solamente el ZIP).
+3. Confirma que `main.py`, `buildozer.spec` y `.github/workflows/compilar-apk.yml` estén en la raíz/ruta indicada.
+4. En GitHub abre el repositorio y entra a **Actions**.
+5. Selecciona **Compilar APK Android** y pulsa **Run workflow**. También se ejecuta al subir cambios a `main` o `master`.
+6. Cuando termine en verde, abre la ejecución y baja el artefacto **Agencia-de-Viajes-APK**. Dentro estará el archivo `.apk`.
+7. En Android abre el APK y, si se solicita, permite instalar aplicaciones desde esa fuente.
+
+## Uso de la aplicación
+1. Abre **Transportes** y registra, por ejemplo, `Camión 01`, tipo Camión y 40 lugares.
+2. En **Registrar viaje**, escribe el título, las fechas como `2026-12-25` y las horas como `08:30`, selecciona el transporte y guarda.
+3. En **Viajes / lugares**, entra al viaje. Marca una casilla cuando el asiento esté ocupado; desmárcala cuando esté disponible.
+
+## Notas
+- Los datos se guardan en el almacenamiento de la aplicación y permanecen entre aperturas normales.
+- Las fechas se escriben en formato ISO (AAAA-MM-DD) y las horas en formato 24 horas (HH:MM).
+- Es una primera versión local: no sincroniza datos entre distintos teléfonos ni incluye usuarios/contraseñas.

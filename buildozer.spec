@@ -1,18 +1,12 @@
 [app]
-title = Agencia de Viajes
-package.name = agenciaviajes
-package.domain = org.ejemplo
-source.dir = .
-source.include_exts = py,json,kv,png,jpg,atlas
-version = 1.0.0
-requirements = python3,kivy
-orientation = portrait
-fullscreen = 0
-android.permissions =
-android.api = 35
-android.archs = arm64-v8a, armeabi-v7a
-android.accept_sdk_license = True
+# ... other settings ...
 
-[buildozer]
-log_level = 2
-warn_on_root = 1
+# Set Python version to 3.11 (matching your workflow)
+python_version = 3.11
+
+# Ensure requirements are compatible with the target architecture
+requirements = python3,kivy
+
+# Set minimum API level appropriately
+android.minapi = 24
+android.targetapi = 35
